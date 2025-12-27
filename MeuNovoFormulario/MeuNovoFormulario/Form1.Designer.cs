@@ -55,11 +55,16 @@
             tbxComplemento = new TextBox();
             tbxBairro = new TextBox();
             tbxCidade = new TextBox();
-            tbxEstado = new TextBox();
             tbxPais = new TextBox();
             tbxCEP = new TextBox();
             tbxReferencia = new TextBox();
             btnSalvar = new Button();
+            btnLimpar = new Button();
+            cbxEstado = new ComboBox();
+            btnExcluir = new Button();
+            btnAlterar = new Button();
+            btnConsultar = new Button();
+            btnNovo = new Button();
             SuspendLayout();
             // 
             // label1
@@ -67,9 +72,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(271, 15);
+            label1.Size = new Size(620, 15);
             label1.TabIndex = 0;
-            label1.Text = "Por favor insira as suas informações no formulário";
+            label1.Text = "Para cadastrar um novo usuário clique em NOVO. Para consultas por favor preencha o CPF e clique em CONSULTAR.";
             // 
             // label2
             // 
@@ -92,7 +97,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(366, 107);
+            label4.Location = new Point(13, 107);
             label4.Name = "label4";
             label4.Size = new Size(55, 15);
             label4.TabIndex = 3;
@@ -102,7 +107,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(13, 107);
+            label5.Location = new Point(366, 107);
             label5.Name = "label5";
             label5.Size = new Size(112, 15);
             label5.TabIndex = 4;
@@ -131,36 +136,47 @@
             // tbxNome
             // 
             tbxNome.Location = new Point(12, 72);
+            tbxNome.MaxLength = 150;
             tbxNome.Name = "tbxNome";
             tbxNome.Size = new Size(776, 23);
             tbxNome.TabIndex = 7;
+            tbxNome.KeyPress += tbxNome_KeyPress;
             // 
             // tbxIdade
             // 
+            tbxIdade.BackColor = SystemColors.Window;
+            tbxIdade.Cursor = Cursors.No;
             tbxIdade.Location = new Point(285, 125);
             tbxIdade.Name = "tbxIdade";
+            tbxIdade.ReadOnly = true;
             tbxIdade.Size = new Size(56, 23);
             tbxIdade.TabIndex = 8;
+            tbxIdade.TabStop = false;
             tbxIdade.TextChanged += tbxIdade_TextChanged;
+            tbxIdade.Enter += tbxIdade_Enter;
             // 
             // tbxProfissao
             // 
-            tbxProfissao.Location = new Point(366, 125);
+            tbxProfissao.Location = new Point(13, 125);
+            tbxProfissao.MaxLength = 50;
             tbxProfissao.Name = "tbxProfissao";
             tbxProfissao.Size = new Size(227, 23);
             tbxProfissao.TabIndex = 9;
             tbxProfissao.TextChanged += tbxProfissao_TextChanged;
+            tbxProfissao.KeyPress += tbxProfissao_KeyPress;
             // 
             // dtNascimento
             // 
-            dtNascimento.Location = new Point(12, 125);
+            dtNascimento.Location = new Point(366, 125);
             dtNascimento.Name = "dtNascimento";
             dtNascimento.Size = new Size(249, 23);
             dtNascimento.TabIndex = 10;
+            dtNascimento.ValueChanged += dtNascimento_ValueChanged;
             // 
             // tbxCPF
             // 
             tbxCPF.Location = new Point(642, 125);
+            tbxCPF.MaxLength = 11;
             tbxCPF.Name = "tbxCPF";
             tbxCPF.Size = new Size(146, 23);
             tbxCPF.TabIndex = 11;
@@ -169,6 +185,7 @@
             // tbxFrase
             // 
             tbxFrase.Location = new Point(12, 190);
+            tbxFrase.MaxLength = 500;
             tbxFrase.Multiline = true;
             tbxFrase.Name = "tbxFrase";
             tbxFrase.Size = new Size(776, 68);
@@ -262,20 +279,26 @@
             // tbxLogradouro
             // 
             tbxLogradouro.Location = new Point(12, 296);
+            tbxLogradouro.MaxLength = 100;
             tbxLogradouro.Name = "tbxLogradouro";
             tbxLogradouro.Size = new Size(451, 23);
             tbxLogradouro.TabIndex = 22;
+            tbxLogradouro.KeyPress += tbxLogradouro_KeyPress;
             // 
             // tbxNumero
             // 
             tbxNumero.Location = new Point(503, 296);
+            tbxNumero.MaxLength = 7;
             tbxNumero.Name = "tbxNumero";
             tbxNumero.Size = new Size(64, 23);
             tbxNumero.TabIndex = 23;
+            tbxNumero.TextChanged += tbxNumero_TextChanged;
+            tbxNumero.KeyPress += tbxNumero_KeyPress;
             // 
             // tbxComplemento
             // 
             tbxComplemento.Location = new Point(625, 296);
+            tbxComplemento.MaxLength = 20;
             tbxComplemento.Name = "tbxComplemento";
             tbxComplemento.Size = new Size(133, 23);
             tbxComplemento.TabIndex = 24;
@@ -283,48 +306,50 @@
             // tbxBairro
             // 
             tbxBairro.Location = new Point(12, 352);
+            tbxBairro.MaxLength = 100;
             tbxBairro.Name = "tbxBairro";
             tbxBairro.Size = new Size(163, 23);
             tbxBairro.TabIndex = 25;
+            tbxBairro.KeyPress += tbxBairro_KeyPress;
             // 
             // tbxCidade
             // 
             tbxCidade.Location = new Point(205, 352);
+            tbxCidade.MaxLength = 100;
             tbxCidade.Name = "tbxCidade";
             tbxCidade.Size = new Size(174, 23);
             tbxCidade.TabIndex = 26;
-            // 
-            // tbxEstado
-            // 
-            tbxEstado.Location = new Point(419, 352);
-            tbxEstado.Name = "tbxEstado";
-            tbxEstado.Size = new Size(44, 23);
-            tbxEstado.TabIndex = 27;
+            tbxCidade.KeyPress += tbxCidade_KeyPress;
             // 
             // tbxPais
             // 
             tbxPais.Location = new Point(503, 352);
+            tbxPais.MaxLength = 100;
             tbxPais.Name = "tbxPais";
             tbxPais.Size = new Size(90, 23);
             tbxPais.TabIndex = 28;
+            tbxPais.KeyPress += tbxPais_KeyPress;
             // 
             // tbxCEP
             // 
             tbxCEP.Location = new Point(625, 352);
+            tbxCEP.MaxLength = 8;
             tbxCEP.Name = "tbxCEP";
             tbxCEP.Size = new Size(133, 23);
             tbxCEP.TabIndex = 29;
+            tbxCEP.KeyPress += tbxCEP_KeyPress;
             // 
             // tbxReferencia
             // 
             tbxReferencia.Location = new Point(12, 411);
+            tbxReferencia.MaxLength = 100;
             tbxReferencia.Name = "tbxReferencia";
             tbxReferencia.Size = new Size(344, 23);
             tbxReferencia.TabIndex = 30;
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(625, 444);
+            btnSalvar.Location = new Point(677, 465);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(107, 49);
             btnSalvar.TabIndex = 31;
@@ -332,16 +357,79 @@
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
             // 
+            // btnLimpar
+            // 
+            btnLimpar.Location = new Point(544, 465);
+            btnLimpar.Name = "btnLimpar";
+            btnLimpar.Size = new Size(107, 49);
+            btnLimpar.TabIndex = 32;
+            btnLimpar.Text = "LIMPAR";
+            btnLimpar.UseVisualStyleBackColor = true;
+            btnLimpar.Click += btnLimpar_Click;
+            // 
+            // cbxEstado
+            // 
+            cbxEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxEstado.FormattingEnabled = true;
+            cbxEstado.Items.AddRange(new object[] { "AC ", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", "EX" });
+            cbxEstado.Location = new Point(418, 352);
+            cbxEstado.Name = "cbxEstado";
+            cbxEstado.Size = new Size(60, 23);
+            cbxEstado.TabIndex = 33;
+            // 
+            // btnExcluir
+            // 
+            btnExcluir.Location = new Point(411, 465);
+            btnExcluir.Name = "btnExcluir";
+            btnExcluir.Size = new Size(107, 49);
+            btnExcluir.TabIndex = 34;
+            btnExcluir.Text = "EXCLUIR";
+            btnExcluir.UseVisualStyleBackColor = true;
+            // 
+            // btnAlterar
+            // 
+            btnAlterar.Location = new Point(278, 465);
+            btnAlterar.Name = "btnAlterar";
+            btnAlterar.Size = new Size(107, 49);
+            btnAlterar.TabIndex = 35;
+            btnAlterar.Text = "ALTERAR";
+            btnAlterar.UseVisualStyleBackColor = true;
+            // 
+            // btnConsultar
+            // 
+            btnConsultar.Location = new Point(145, 465);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(107, 49);
+            btnConsultar.TabIndex = 36;
+            btnConsultar.Text = "CONSULTAR";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
+            // 
+            // btnNovo
+            // 
+            btnNovo.Location = new Point(12, 465);
+            btnNovo.Name = "btnNovo";
+            btnNovo.Size = new Size(107, 49);
+            btnNovo.TabIndex = 37;
+            btnNovo.Text = "NOVO";
+            btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += btnNovo_Click;
+            // 
             // Formulario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 526);
+            Controls.Add(btnNovo);
+            Controls.Add(btnConsultar);
+            Controls.Add(btnAlterar);
+            Controls.Add(btnExcluir);
+            Controls.Add(cbxEstado);
+            Controls.Add(btnLimpar);
             Controls.Add(btnSalvar);
             Controls.Add(tbxReferencia);
             Controls.Add(tbxCEP);
             Controls.Add(tbxPais);
-            Controls.Add(tbxEstado);
             Controls.Add(tbxCidade);
             Controls.Add(tbxBairro);
             Controls.Add(tbxComplemento);
@@ -371,6 +459,7 @@
             Controls.Add(label1);
             Name = "Formulario";
             Text = "Formulário de Cadastro";
+            Load += Formulario_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -404,10 +493,15 @@
         private TextBox tbxComplemento;
         private TextBox tbxBairro;
         private TextBox tbxCidade;
-        private TextBox tbxEstado;
         private TextBox tbxPais;
         private TextBox tbxCEP;
         private TextBox tbxReferencia;
         private Button btnSalvar;
+        private Button btnLimpar;
+        private ComboBox cbxEstado;
+        private Button btnExcluir;
+        private Button btnAlterar;
+        private Button btnConsultar;
+        private Button btnNovo;
     }
 }
